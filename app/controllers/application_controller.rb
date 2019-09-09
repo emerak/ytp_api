@@ -15,4 +15,9 @@ class ApplicationController < ActionController::API
   def token
     @token ||= request.headers['Authorization']&.split(' ')&.last
   end
+
+  def can_perform?
+    return render json: { error: 'not allowed' }, status: :forbidden \
+      unless User.find_by(token: @token)&.admin?
+  end
 end
