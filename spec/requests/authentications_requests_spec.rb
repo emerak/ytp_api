@@ -8,7 +8,7 @@ RSpec.describe 'Authentications', type: :request do
     context 'Successful' do
       it 'authenticates a user' do
         post v1_login_path,
-             params: { email: user.email, password: user.password }
+             params: { user: { email: user.email, password: user.password } }
         expect(response).to have_http_status(:success)
       end
 
@@ -16,7 +16,7 @@ RSpec.describe 'Authentications', type: :request do
         allow(JwtEncoder).to receive(:encode).and_return('mockedtoken')
 
         post v1_login_path,
-             params: { email: user.email, password: user.password }
+             params: { user: { email: user.email, password: user.password } }
 
         body = JSON.parse(response.body)
 
@@ -28,7 +28,7 @@ RSpec.describe 'Authentications', type: :request do
       context 'incorrect email' do
         it 'does not authenticates a user' do
           post v1_login_path,
-               params: { email: 'random@test.com', password: user.password }
+               params: { user: { email: 'random@test.com', password: user.password } }
 
           expect(response).to have_http_status(:unauthorized)
         end
@@ -37,7 +37,7 @@ RSpec.describe 'Authentications', type: :request do
       context 'incorrect password' do
         it 'does not authenticates a user' do
           post v1_login_path,
-               params: { email: user.email, password: 'somepassword' }
+               params: { user: { email: user.email, password: 'somepassword' } }
           expect(response).to have_http_status(:unauthorized)
         end
       end
@@ -45,7 +45,7 @@ RSpec.describe 'Authentications', type: :request do
       it 'does not returns a token' do
         allow(JwtEncoder).to receive(:encode).and_return('mockedtoken')
 
-        post v1_login_path, params: { email: '', password: '' }
+        post v1_login_path, params: { user: { email: '', password: '' } }
 
         body = JSON.parse(response.body)
 

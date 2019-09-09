@@ -1,0 +1,163 @@
+{
+  "authentications#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=john%40test.com&user[password]=testpass",
+      "response_data": {
+        "token": "mockedtoken"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=john%40test.com&user[password]=testpass",
+      "response_data": {
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MDcyMDY5fQ.8D3-Q1iZDKHgvDMYY7dNpzSWEATNFZMJdES8n4n2CwA"
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=&user[password]=",
+      "response_data": {
+        "error": "unauthorized"
+      },
+      "code": 401,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=john%40test.com&user[password]=somepassword",
+      "response_data": {
+        "error": "unauthorized"
+      },
+      "code": 401,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=random%40test.com&user[password]=testpass",
+      "response_data": {
+        "error": "unauthorized"
+      },
+      "code": 401,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "registrations#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=holder%40test.com&user[password]=myholderpwd",
+      "response_data": {
+        "user": {
+          "id": 1,
+          "email": "holder@test.com",
+          "role": "holder",
+          "password_digest": "$2a$04$p9hfA/aoh4i.SpkOIg7T4uwPrFVcquHsbalPxdyLe92OmXLnJ2KtW",
+          "created_at": "2019-09-09T22:34:29.968Z",
+          "updated_at": "2019-09-09T22:34:29.968Z",
+          "token": null
+        }
+      },
+      "code": 201,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=holder%40test.com&user[password]=myholderpwd",
+      "response_data": {
+        "user": {
+          "id": 1,
+          "email": "holder@test.com",
+          "role": "holder",
+          "password_digest": "$2a$04$y38fHbAotlt/VIu3.Edpi.iNpIga.J5F6DUp8xB9zoVcekdSpp4eK",
+          "created_at": "2019-09-09T22:34:30.015Z",
+          "updated_at": "2019-09-09T22:34:30.015Z",
+          "token": null
+        }
+      },
+      "code": 201,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=&user[password]=myholderpwd",
+      "response_data": {
+        "error": [
+          "Email can't be blank",
+          "Email is invalid"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=holder%40test.com&user[password]=",
+      "response_data": {
+        "error": [
+          "Password can't be blank",
+          "Password is too short (minimum is 8 characters)"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ]
+}
