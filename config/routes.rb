@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
       resources :registrations, only: :create
       resources :deposits, only: :create
+      resources :transfers, only: :create
     end
   end
 end
