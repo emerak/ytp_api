@@ -7,9 +7,10 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=john%40test.com&user[password]=testpass",
+      "request_data": "email=john%40test.com&password=testpass",
       "response_data": {
-        "token": "mockedtoken"
+        "token": "mockedtoken",
+        "clabe": "642914816160860585"
       },
       "code": 200,
       "show_in_doc": 1,
@@ -22,9 +23,10 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=john%40test.com&user[password]=testpass",
+      "request_data": "email=john%40test.com&password=testpass",
       "response_data": {
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MDcyMDY5fQ.8D3-Q1iZDKHgvDMYY7dNpzSWEATNFZMJdES8n4n2CwA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MTM1NzEyfQ.A2gEZReBx7LqioGbubGF3aCOPr1kUdWgXFA3S6m2Gg8",
+        "clabe": "103113685113354425"
       },
       "code": 200,
       "show_in_doc": 0,
@@ -37,7 +39,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=&user[password]=",
+      "request_data": "email=&password=",
       "response_data": {
         "error": "unauthorized"
       },
@@ -52,7 +54,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=john%40test.com&user[password]=somepassword",
+      "request_data": "email=random%40test.com&password=testpass",
       "response_data": {
         "error": "unauthorized"
       },
@@ -67,11 +69,58 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=random%40test.com&user[password]=testpass",
+      "request_data": "email=john%40test.com&password=somepassword",
       "response_data": {
         "error": "unauthorized"
       },
       "code": 401,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "deposits#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/deposits",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=john%40test.com&amount=10",
+      "response_data": {
+        "balance": "10"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/deposits",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=&amount=10",
+      "response_data": {
+        "errors": "missing email"
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/deposits",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=john%40test.com&amount=",
+      "response_data": {
+        "errors": "missing amount"
+      },
+      "code": 422,
       "show_in_doc": 0,
       "recorded": true
     }
@@ -90,9 +139,9 @@
           "id": 1,
           "email": "holder@test.com",
           "role": "holder",
-          "password_digest": "$2a$04$p9hfA/aoh4i.SpkOIg7T4uwPrFVcquHsbalPxdyLe92OmXLnJ2KtW",
-          "created_at": "2019-09-09T22:34:29.968Z",
-          "updated_at": "2019-09-09T22:34:29.968Z",
+          "password_digest": "$2a$04$ekH9CFJ4doI9Ibm7Zk2jIeaVtkSNJrJSuxKDcm51Z6l.UHet.wvVy",
+          "created_at": "2019-09-10T16:15:12.280Z",
+          "updated_at": "2019-09-10T16:15:12.280Z",
           "token": null
         }
       },
@@ -113,31 +162,13 @@
           "id": 1,
           "email": "holder@test.com",
           "role": "holder",
-          "password_digest": "$2a$04$y38fHbAotlt/VIu3.Edpi.iNpIga.J5F6DUp8xB9zoVcekdSpp4eK",
-          "created_at": "2019-09-09T22:34:30.015Z",
-          "updated_at": "2019-09-09T22:34:30.015Z",
+          "password_digest": "$2a$04$/O9L9L2UYl4YPPGzZrEEJ.BeqveMrjYGqLm6.O0w/umIOcJpHO5Uu",
+          "created_at": "2019-09-10T16:15:12.349Z",
+          "updated_at": "2019-09-10T16:15:12.349Z",
           "token": null
         }
       },
       "code": 201,
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/registrations",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
-      "request_data": "user[email]=&user[password]=myholderpwd",
-      "response_data": {
-        "error": [
-          "Email can't be blank",
-          "Email is invalid"
-        ]
-      },
-      "code": 422,
       "show_in_doc": 0,
       "recorded": true
     },
@@ -153,6 +184,24 @@
         "error": [
           "Password can't be blank",
           "Password is too short (minimum is 8 characters)"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "user[email]=&user[password]=myholderpwd",
+      "response_data": {
+        "error": [
+          "Email can't be blank",
+          "Email is invalid"
         ]
       },
       "code": 422,
