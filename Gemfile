@@ -6,6 +6,7 @@ ruby '2.6.1'
 gem 'apipie-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'clabe', git: 'git@github.com:yellowme/clabe.git'
 gem 'jwt'
 gem 'money-rails'
 gem 'puma', '~> 3.11'
