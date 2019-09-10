@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'login', to: 'authentications#create'
 
       resources :registrations, only: :create
+      resources :deposits, only: :create
     end
   end
 end
