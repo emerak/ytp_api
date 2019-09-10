@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_184507) do
+ActiveRecord::Schema.define(version: 2019_09_10_145608) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "balance_cents", default: 0, null: false
+    t.string "balance_currency", default: "MXN", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "external_accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "clabe"
+    t.integer "balance_cents", default: 0, null: false
+    t.string "balance_currency", default: "MXN", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_external_accounts_on_user_id"
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "operation"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "MXN", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_movements_on_account_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
