@@ -6,18 +6,20 @@ module V1
     before_action :check_params
 
     formats ['json']
-    description "Make a Deposit to an user's account"
+    description "Admin action: Make a Deposit to an user's account given the email address and the amount"
     api :POST, '/v1/deposits'
     param :email, String, desc: 'user email', required: true
     param :amount, String, desc: 'deposit amount', required: true
 
     def create
-      user = User.find_by(email: deposit_params[:email])
+      service = DepositService.new(deposit_params)
 
-      if user.account.deposit!(deposit_params[:amount])
-        render json: { balance: user.account.balance.format }, status: 200
+      service.call
+
+      if service.errors.empty?
+        render json: { balance: service.account.balance.format }, status: 200
       else
-        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: service.errors.full_messages }, status: :unprocessable_entity
       end
     end
 

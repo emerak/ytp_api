@@ -6,15 +6,13 @@ class Account < ApplicationRecord
   belongs_to :user
   has_many :movements
 
-  validates :balance, numericality: { greater_than_or_equal_to: 0, message: 'Not enough funds in you account' }
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   def deposit!(amount)
     amount = Money.new(amount) * 100
     Account.transaction do
-      update_attributes!(balance: balance + amount)
-      Movement.transaction do
-        movements.create!(amount: amount, operation: 'deposit')
-      end
+      update!(balance: balance + amount)
+      movements.create!(amount: amount, operation: 'deposit')
     end
   end
 

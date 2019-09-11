@@ -43,4 +43,30 @@ RSpec.describe Account, type: :model do
       end
     end
   end
+
+  describe '#deposit!' do
+    it 'adds money to the account' do
+      account.deposit!(10)
+
+      expect(account.balance.format).to eql("21")
+
+    end
+
+    it 'creates a deposit movement' do
+      account.deposit!(10)
+
+      expect(account.movements.count).to eql(1)
+      expect(account.movements.first.amount.format).to eql('10')
+      expect(account.movements.first.operation).to eql('deposit')
+    end
+
+    context 'When deposit is negative' do
+      let(:account) { create(:account, user: user, balance: 0) }
+
+      it 'raises validation on balance' do
+        expect{account.deposit!(-10)}.to  \
+          raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Balance must be greater than or equal to 0')
+      end
+    end
+  end
 end

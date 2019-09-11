@@ -2,24 +2,23 @@
 
 module V1
   class TransfersController < ApplicationController
+    before_action :can_perform?
 
     formats ['json']
-    description "Make a Deposit to an user's account"
+    description "Holder action: Makes a withdrawal to an user's account given the clabe and the amount"
     api :POST, '/v1/transfers'
     param :destination, String, desc: 'user clabe', required: true
     param :amount, String, desc: 'transfer amount', required: true
 
     def create
-      user = User.find_by(token: @token)
-
-      service = TransferService.new(user, transfer_params[:destination], transfer_params[:amount])
+      service = TransferService.new(@token, transfer_params)
 
       service.call
 
       if service.errors.empty?
         render json: {
           message: 'success',
-          balance: user.external_account.balance.format
+          balance: service.external_account.balance.format
         }, status: :ok
       else
         render json: { errors: service.errors.full_messages }, status: :unprocessable_entity
@@ -30,6 +29,11 @@ module V1
 
     def transfer_params
       params.permit(:destination, :amount)
+    end
+
+    def can_perform?
+      return render json: { error: 'not allowed' }, status: :forbidden \
+        unless User.find_by(token: @token).holder?
     end
   end
 end

@@ -1,14 +1,11 @@
 # frozen_string_literal: true
-class TransferService
+class DepositService
 
-  attr_reader :errors, :external_account
+  attr_reader :errors, :account
 
-  def initialize(token, params)
-    @user = User.find_by(token: token)
-    @account = @user&.account
-    @clabe = params[:destination]
+  def initialize(params)
+    @user = User.find_by(email: params[:email])
     @amount = params[:amount]
-    @external_account = @user&.external_account
     @errors = ActiveModel::Errors.new(User.new)
   end
 
@@ -16,7 +13,8 @@ class TransferService
     validate
     return if @errors.any?
 
-    @account.transfer!(@amount)
+    @account = @user.account
+    @account.deposit!(@amount)
   rescue StandardError => e
     @errors.clear
     @errors.add(:base, :invalid, message: error_messages(e.message))
@@ -26,9 +24,8 @@ class TransferService
 
   def validate
     @errors.add(:base, :invalid, message: "can't make deposit on this user") if @user.nil? || @user.admin?
-    @errors.add(:base, :invalid, message: 'invalid account') if @account.nil?
+    @errors.add(:base, :invalid, message: 'invalid account') if @user&.account.blank?
     @errors.add(:base, :invalid, message: 'invalid amount') if @amount.blank?
-    @errors.add(:base, :invalid, message: 'incorrect clabe') if @external_account&.clabe != @clabe || @clabe.blank?
   end
 
   def error_messages(message)

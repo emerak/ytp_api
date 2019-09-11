@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe 'Transfers', type: :request do
   let(:holder) { create(:user, :holder) }
-  let(:external_account) {
+  let!(:external_account) {
     create(:external_account,
            user: holder,
            balance: 0,
@@ -31,6 +31,20 @@ RSpec.describe 'Transfers', type: :request do
       end
     end
 
+    context 'Holder is not the owner of the clabe' do
+      it 'returns an error' do
+        holder.account.update(balance: 20)
+
+        post v1_transfers_path,
+             params: { destination: '809090900088', amount: '10' }
+
+        body = JSON.parse(response.body)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(body['errors']).to eql(['incorrect clabe'])
+      end
+    end
+
     context 'Not enough funds' do
       it 'returns the validation error' do
         holder.account.update(balance: 0)
@@ -41,7 +55,7 @@ RSpec.describe 'Transfers', type: :request do
         body = JSON.parse(response.body)
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(body['errors']).to eql(['Validation failed: Balance Not enough funds in you account'])
+        expect(body['errors']).to eql(['Not enough funds in your account'])
       end
     end
   end

@@ -17,8 +17,12 @@ module V1
         token = JwtEncoder.encode(user.id)
 
         if user.update_attribute(:token, token)
-          user.create_external_account!
-          render json: { token: token, clabe: user.external_account.clabe }, status: :ok
+          if user.holder?
+            user.create_external_account!
+            render json: { token: token, clabe: user.external_account.clabe }, status: :ok
+          else
+            render json: { token: token }, status: :ok
+          end
         else
           render json: { error: 'unauthorized' }, status: :unauthorized
         end

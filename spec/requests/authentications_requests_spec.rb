@@ -3,9 +3,10 @@ require 'rails_helper'
 
 RSpec.describe 'Authentications', type: :request do
   let(:user) { create(:user, :admin) }
+  let(:holder) { create(:user, :holder, email: 'holder@test.com') }
 
   describe '#post' do
-    context 'Successful' do
+    context 'admin' do
       it 'authenticates a user' do
         post v1_login_path,
              params: { email: user.email, password: user.password }
@@ -21,6 +22,25 @@ RSpec.describe 'Authentications', type: :request do
         body = JSON.parse(response.body)
 
         expect(body['token']).to eql('mockedtoken')
+      end
+    end
+
+    context 'holder' do
+      it 'authenticates a user' do
+        post v1_login_path,
+             params: { email: holder.email, password: holder.password }
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns a clabe' do
+        allow(JwtEncoder).to receive(:encode).and_return('mockedtoken')
+
+        post v1_login_path,
+             params: { email: holder.email, password: holder.password }
+
+        body = JSON.parse(response.body)
+
+        expect(body['clabe']).to be_present
       end
     end
 

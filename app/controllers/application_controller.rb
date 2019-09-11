@@ -6,7 +6,6 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_user!
-
     return render json: { error: 'token not present' }, status: :unauthorized unless token
 
     decoded_token = JwtDecoder.decode(token)

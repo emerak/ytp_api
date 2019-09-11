@@ -18,8 +18,8 @@ class User < ApplicationRecord
   after_create_commit :create_account, if: -> { holder? }
 
   def create_external_account!
-    # User already has an account
-    return unless external_account.nil?
+    # User is admin already has an account
+    return unless holder? || external_account.nil?
 
     # Autogenerate the CLABE
     loop do

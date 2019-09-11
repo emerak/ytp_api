@@ -16,14 +16,14 @@ RSpec.describe 'Registrations', type: :request do
     context 'Successful' do
       it 'creates a holder user' do
         post v1_registrations_path,
-          params: { user: { email: 'holder@test.com', password: 'myholderpwd' } }
+          params: { email: 'holder@test.com', password: 'myholderpwd' }
 
         expect(response).to have_http_status(:success)
       end
 
       it 'returns the user' do
         post v1_registrations_path,
-          params: { user: { email: 'holder@test.com', password: 'myholderpwd' } }
+          params: { email: 'holder@test.com', password: 'myholderpwd' }
 
         body = JSON.parse(response.body)
 
@@ -35,7 +35,7 @@ RSpec.describe 'Registrations', type: :request do
       context "no user email" do
         it 'does not creates a holder user' do
           post v1_registrations_path,
-            params: { user: { email: '', password: 'myholderpwd' } }
+            params: { email: '', password: 'myholderpwd' }
 
           expect(response).to have_http_status(:unprocessable_entity)
         end
@@ -44,7 +44,7 @@ RSpec.describe 'Registrations', type: :request do
       context "no user password" do
         it 'does not creates a holder user' do
           post v1_registrations_path,
-            params: { user: { email: 'holder@test.com', password: '' } }
+            params: { email: 'holder@test.com', password: '' }
 
           expect(response).to have_http_status(:unprocessable_entity)
         end

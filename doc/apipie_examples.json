@@ -52,10 +52,10 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "email=john%40test.com&password=testpass",
+      "request_data": "email=holder%40test.com&password=testpass",
       "response_data": {
         "token": "mockedtoken",
-        "clabe": "640637003716566079"
+        "clabe": "655846046172361787"
       },
       "code": 200,
       "show_in_doc": 0,
@@ -68,10 +68,40 @@
         "1.0"
       ],
       "query": null,
+      "request_data": "email=holder%40test.com&password=testpass",
+      "response_data": {
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI2ODUyfQ.rAcUwkE1dbcbD0fELGfOPu3SMv9SOfnu15fva39KgSI",
+        "clabe": "103127331832654429"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
       "request_data": "email=john%40test.com&password=testpass",
       "response_data": {
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MTU3OTUzfQ.tmlK9lVEhsrhiXhEPNBjQX6NOVEUQO8Hlmhi7Ki3mrM",
-        "clabe": "631330674324777128"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI2ODUyfQ.rAcUwkE1dbcbD0fELGfOPu3SMv9SOfnu15fva39KgSI"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=john%40test.com&password=testpass",
+      "response_data": {
+        "token": "mockedtoken"
       },
       "code": 200,
       "show_in_doc": 0,
@@ -133,19 +163,14 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=holder%40test.com&user[password]=myholderpwd",
+      "request_data": "email=&password=myholderpwd",
       "response_data": {
-        "user": {
-          "id": 1,
-          "email": "holder@test.com",
-          "role": "holder",
-          "password_digest": "$2a$04$1wx.GTDWXczq4U67U98zUeUVK5/A0w1KVcxpGUSvrvWszhokT/7Hy",
-          "created_at": "2019-09-10T22:25:53.958Z",
-          "updated_at": "2019-09-10T22:25:53.958Z",
-          "token": null
-        }
+        "error": [
+          "Email can't be blank",
+          "Email is invalid"
+        ]
       },
-      "code": 201,
+      "code": 422,
       "show_in_doc": 1,
       "recorded": true
     },
@@ -156,15 +181,33 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=holder%40test.com&user[password]=myholderpwd",
+      "request_data": "email=holder%40test.com&password=",
+      "response_data": {
+        "error": [
+          "Password can't be blank",
+          "Password is too short (minimum is 8 characters)"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/registrations",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=holder%40test.com&password=myholderpwd",
       "response_data": {
         "user": {
           "id": 1,
           "email": "holder@test.com",
           "role": "holder",
-          "password_digest": "$2a$04$JmVVQ4EeEzlBeO5IDuSOR.bAq4F4mmRe6cvBd3ArBDrmzS8u4BCz6",
-          "created_at": "2019-09-10T22:25:53.996Z",
-          "updated_at": "2019-09-10T22:25:53.996Z",
+          "password_digest": "$2a$04$0s0Va4I7hrPMqWH8D6oFw.Rh3KZJgQghIfolyLFND58PLdlX/OrCe",
+          "created_at": "2019-09-11T17:34:12.069Z",
+          "updated_at": "2019-09-11T17:34:12.069Z",
           "token": null
         }
       },
@@ -179,32 +222,19 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "user[email]=&user[password]=myholderpwd",
+      "request_data": "email=holder%40test.com&password=myholderpwd",
       "response_data": {
-        "error": [
-          "Email can't be blank",
-          "Email is invalid"
-        ]
+        "user": {
+          "id": 1,
+          "email": "holder@test.com",
+          "role": "holder",
+          "password_digest": "$2a$04$GzvKzwH9pjxm45H2Rhh2yOc6T3FMZRsNoMTLF2.hS/mCWA47gGNKG",
+          "created_at": "2019-09-11T17:34:12.092Z",
+          "updated_at": "2019-09-11T17:34:12.092Z",
+          "token": null
+        }
       },
-      "code": 422,
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/registrations",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
-      "request_data": "user[email]=holder%40test.com&user[password]=",
-      "response_data": {
-        "error": [
-          "Password can't be blank",
-          "Password is too short (minimum is 8 characters)"
-        ]
-      },
-      "code": 422,
+      "code": 201,
       "show_in_doc": 0,
       "recorded": true
     }
@@ -217,7 +247,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "destination=617914445746107631&amount=10",
+      "request_data": "destination=606040534216804506&amount=10",
       "response_data": {
         "message": "success",
         "balance": "10"
@@ -233,10 +263,27 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "destination=137053835553450056&amount=10",
+      "request_data": "destination=628266553044457670&amount=10",
       "response_data": {
         "errors": [
-          "Validation failed: Balance Not enough funds in you account"
+          "Not enough funds in your account"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/transfers",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "destination=809090900088&amount=10",
+      "response_data": {
+        "errors": [
+          "incorrect clabe"
         ]
       },
       "code": 422,
