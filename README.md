@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Project Setup
+ clone repository
 
-Things you may want to cover:
+`bundle install` to install dependencies
 
-* Ruby version
+`rails db:setup` to create, load schema and seed database
 
-* System dependencies
+Admin user = admin@ytp.com
 
-* Configuration
+`rails server` to initiate server
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+documentation is located on `localhost:3000/apipie`
