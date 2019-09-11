@@ -8,6 +8,7 @@ module V1
     formats ['json']
     description "Admin action: Make a Deposit to an user's account given the email address and the amount"
     api :POST, '/v1/deposits'
+    header 'Authorization', 'Authorization Header', required: true
     param :email, String, desc: 'user email', required: true
     param :amount, String, desc: 'deposit amount', required: true
 

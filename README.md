@@ -7,7 +7,7 @@
 
 `rails db:setup` to create, load schema and seed database
 
-Admin user = admin@ytp.com
+Admin user = admin@test.com, password: adminytp
 
 `rails server` to initiate server
 

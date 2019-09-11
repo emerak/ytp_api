@@ -1,9 +1,10 @@
 module JwtDecoder
   def self.decode(token)
     secret = Rails.application.credentials.secret_key_base
+    app_id = Rails.application.credentials.app_id
 
     payload = {
-      iss: ENV['APP_ID'],
+      iss: app_id,
       verify_iss: true,
       algorithm: 'HS256'
     }

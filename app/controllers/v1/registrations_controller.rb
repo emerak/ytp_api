@@ -6,6 +6,7 @@ module V1
 
     formats ['json']
     description 'Admin action: Creates a holder given an email and password'
+    header 'Authorization',  'Authorization Header', required: true
     api :POST, '/v1/registrations'
     param :email, String, desc: 'user email', required: true
     param :password, String, desc: 'user password', required: true

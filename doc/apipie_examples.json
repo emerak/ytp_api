@@ -7,6 +7,38 @@
         "1.0"
       ],
       "query": null,
+      "request_data": "email=holder%40test.com&password=testpass",
+      "response_data": {
+        "token": "mockedtoken",
+        "clabe": "652210335782868169"
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=holder%40test.com&password=testpass",
+      "response_data": {
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI5NjEyfQ.bCT-N1RqzJDK_amAVUOngeqww34KE_8pWg5dpgvlITk",
+        "clabe": "622793310364726463"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
       "request_data": "email=&password=",
       "response_data": {
         "error": "unauthorized"
@@ -52,53 +84,6 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "email=holder%40test.com&password=testpass",
-      "response_data": {
-        "token": "mockedtoken",
-        "clabe": "655846046172361787"
-      },
-      "code": 200,
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/login",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
-      "request_data": "email=holder%40test.com&password=testpass",
-      "response_data": {
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI2ODUyfQ.rAcUwkE1dbcbD0fELGfOPu3SMv9SOfnu15fva39KgSI",
-        "clabe": "103127331832654429"
-      },
-      "code": 200,
-      "show_in_doc": 1,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/login",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
-      "request_data": "email=john%40test.com&password=testpass",
-      "response_data": {
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI2ODUyfQ.rAcUwkE1dbcbD0fELGfOPu3SMv9SOfnu15fva39KgSI"
-      },
-      "code": 200,
-      "show_in_doc": 1,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/login",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
       "request_data": "email=john%40test.com&password=testpass",
       "response_data": {
         "token": "mockedtoken"
@@ -106,9 +91,39 @@
       "code": 200,
       "show_in_doc": 0,
       "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/login",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=john%40test.com&password=testpass",
+      "response_data": {
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoxLCJpc3MiOm51bGwsInZlcmlmeV9pc3MiOnRydWUsImFsZ29yaXRobSI6IkhTMjU2IiwiZXhwIjoxNTY4MjI5NjEyfQ.bCT-N1RqzJDK_amAVUOngeqww34KE_8pWg5dpgvlITk"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
     }
   ],
   "deposits#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/deposits",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=&amount=10",
+      "response_data": {
+        "errors": "missing email"
+      },
+      "code": 422,
+      "show_in_doc": 1,
+      "recorded": true
+    },
     {
       "verb": "POST",
       "path": "/api/v1/deposits",
@@ -131,27 +146,12 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "email=&amount=10",
-      "response_data": {
-        "errors": "missing email"
-      },
-      "code": 422,
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "POST",
-      "path": "/api/v1/deposits",
-      "versions": [
-        "1.0"
-      ],
-      "query": null,
       "request_data": "email=john%40test.com&amount=10",
       "response_data": {
         "balance": "10"
       },
       "code": 200,
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -189,7 +189,7 @@
         ]
       },
       "code": 422,
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
@@ -205,9 +205,9 @@
           "id": 1,
           "email": "holder@test.com",
           "role": "holder",
-          "password_digest": "$2a$04$0s0Va4I7hrPMqWH8D6oFw.Rh3KZJgQghIfolyLFND58PLdlX/OrCe",
-          "created_at": "2019-09-11T17:34:12.069Z",
-          "updated_at": "2019-09-11T17:34:12.069Z",
+          "password_digest": "$2a$04$oJp87EwERky./SXJNvoOzuppD5Acy97bEXliD4ZMOnt5BzDYy5biO",
+          "created_at": "2019-09-11T18:20:12.962Z",
+          "updated_at": "2019-09-11T18:20:12.962Z",
           "token": null
         }
       },
@@ -228,14 +228,14 @@
           "id": 1,
           "email": "holder@test.com",
           "role": "holder",
-          "password_digest": "$2a$04$GzvKzwH9pjxm45H2Rhh2yOc6T3FMZRsNoMTLF2.hS/mCWA47gGNKG",
-          "created_at": "2019-09-11T17:34:12.092Z",
-          "updated_at": "2019-09-11T17:34:12.092Z",
+          "password_digest": "$2a$04$rtXkvdKL/1PlfVogHT4XhurMvX6tQ76LQnO1UEUi.aO/y/WakQU/2",
+          "created_at": "2019-09-11T18:20:12.985Z",
+          "updated_at": "2019-09-11T18:20:12.985Z",
           "token": null
         }
       },
       "code": 201,
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -247,7 +247,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "destination=606040534216804506&amount=10",
+      "request_data": "destination=136161466025235469&amount=10",
       "response_data": {
         "message": "success",
         "balance": "10"
@@ -263,7 +263,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": "destination=628266553044457670&amount=10",
+      "request_data": "destination=620226330721646800&amount=10",
       "response_data": {
         "errors": [
           "Not enough funds in your account"
