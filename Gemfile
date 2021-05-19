@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'clabe', git: 'git@github.com:yellowme/clabe.git'
 gem 'jwt'
 gem 'money-rails'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.0'
 gem 'sqlite3'
 
